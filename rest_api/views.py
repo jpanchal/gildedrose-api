@@ -8,7 +8,10 @@ from rest_framework.views import status
 
 
 class CreateView(generics.ListCreateAPIView):
-    """This class handles the GET and POSt requests of our rest api."""
+    """
+        GET itemlists/
+        POST itemlists/
+    """
     queryset = Itemlist.objects.all()
     serializer_class = ItemlistSerializer
     permission_classes = (
@@ -16,12 +19,15 @@ class CreateView(generics.ListCreateAPIView):
         IsOwner)
 
     def perform_create(self, serializer):
-        """Save the post data when creating a new itemlist."""
         serializer.save(owner=self.request.user)
 
 
 class DetailsView(generics.RetrieveUpdateDestroyAPIView):
-    """This class handles GET, PUT, PATCH and DELETE requests."""
+    """
+       GET itemlists/:id/
+       PUT itemlists/:id/
+       DELETE itemlists/:id/
+    """
 
     queryset = Itemlist.objects.all()
     serializer_class = ItemlistSerializer
@@ -31,7 +37,10 @@ class DetailsView(generics.RetrieveUpdateDestroyAPIView):
 
 
 class CartCreateView(generics.ListCreateAPIView):
-    """This class handles the GET and POSt requests of our rest api."""
+    """
+        GET buyitem/
+        POST buyitem/
+    """
     queryset = Cart.objects.all()
     serializer_class = CartSerializer
     permission_classes = (
@@ -39,12 +48,15 @@ class CartCreateView(generics.ListCreateAPIView):
         IsOwner)
 
     def perform_create(self, serializer):
-        """Save the post data when creating a new itemlist."""
         serializer.save(owner=self.request.user)
 
 
 class CartDetailsView(generics.RetrieveUpdateDestroyAPIView):
-    """This class handles GET, PUT, PATCH and DELETE requests."""
+    """
+       GET buyitem/:id/
+       PUT buyitem/:id/
+       DELETE buyitem/:id/
+    """
 
     queryset = Cart.objects.all()
     serializer_class = CartSerializer
@@ -54,20 +66,24 @@ class CartDetailsView(generics.RetrieveUpdateDestroyAPIView):
 
 
 class UserView(generics.ListAPIView):
-    """View to list the user queryset."""
+    """
+       GET users/
+    """
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
 
 class UserDetailsView(generics.RetrieveAPIView):
-    """View to retrieve a user instance."""
+    """
+       GET users/:id/
+    """
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
 
 class RegisterUsers(generics.CreateAPIView):
     """
-    POST auth/register/
+        POST auth/register/
     """
     permission_classes = (permissions.AllowAny,)
 

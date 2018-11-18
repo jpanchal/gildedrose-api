@@ -7,10 +7,8 @@ from django.contrib.auth.models import User
 
 
 class ModelTestCase(TestCase):
-    """This class defines the test suite for the itemlist model."""
 
     def setUp(self):
-        """Define the test client and other test variables."""
         user = User.objects.create(username="nerd")
         self.name = "Write world class code"
         self.itemlist = Itemlist(name=self.name, owner=user)
